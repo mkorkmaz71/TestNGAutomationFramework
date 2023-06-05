@@ -1,18 +1,13 @@
 package com.automation.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class OrderConfirmationPage {
-    WebDriver driver;
-
-    public OrderConfirmationPage(WebDriver driver) {
-        this.driver = driver;
-    }
+public class OrderConfirmationPage extends BasePage {
+    @FindBy(id = "checkout_complete_container")
+    WebElement confirmation;
 
     public void verifyConfirmationPageDisplayed() {
-        WebElement confirmation = driver.findElement(By.id("checkout_complete_container"));
         System.out.println(confirmation.getText());
     }
 }

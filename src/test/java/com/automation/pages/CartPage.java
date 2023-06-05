@@ -1,18 +1,14 @@
 package com.automation.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class CartPage {
-    WebDriver driver;
+public class CartPage extends BasePage {
 
-    public CartPage(WebDriver driver) {
-        this.driver = driver;
-    }
+    @FindBy(name = "checkout")
+    WebElement checkout;
 
     public void clickOnCheckoutBtn() {
-        WebElement checkout = driver.findElement(By.name("checkout"));
         checkout.click();
     }
 }

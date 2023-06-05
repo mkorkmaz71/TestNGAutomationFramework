@@ -1,25 +1,39 @@
 package com.automation.test;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import com.automation.pages.*;
+import com.automation.utils.ConfigReader;
+import com.automation.utils.DriverUtils;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import java.time.Duration;
-
 public class BaseTest {
-    WebDriver driver;
+    LoginPage loginPage;
+    HomePage homePage;
+    CartPage cartPage;
+    CheckoutPage checkoutPage;
+    ReviewPage reviewPage;
+    OrderConfirmationPage orderConfirmationPage;
 
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        driver.get("https://www.saucedemo.com/");
+        ConfigReader.initProperties();
+        DriverUtils.createDriver();
+        initializePageObjects();
     }
 
     @AfterMethod
     public void cleanUp() {
-        driver.quit();
+        DriverUtils.getDriver().quit();
+    }
+
+    public void initializePageObjects(){
+        loginPage = new LoginPage();
+        homePage = new HomePage();
+        cartPage = new CartPage();
+        checkoutPage = new CheckoutPage();
+        reviewPage = new ReviewPage();
+        orderConfirmationPage = new OrderConfirmationPage();
     }
 }
+
+

@@ -1,24 +1,20 @@
 package com.automation.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class HomePage {
+public class HomePage extends BasePage {
+    @FindBy(id = "add-to-cart-sauce-labs-backpack")
+    WebElement item1;
 
-    WebDriver driver;
-
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
-    }
+    @FindBy(xpath = "//a[@class = 'shopping_cart_link']")
+    WebElement cart;
 
     public void clickOnAddToCartBtnOfFirstProduct() {
-        WebElement item1 = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
         item1.click();
     }
 
     public void clickOnCartIcon() {
-        WebElement cart = driver.findElement(By.xpath("//a[@class = 'shopping_cart_link']"));
         cart.click();
     }
 

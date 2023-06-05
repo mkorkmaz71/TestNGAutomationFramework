@@ -1,22 +1,36 @@
 package com.automation.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
-public class LoginPage {
-    WebDriver driver;
+public class LoginPage extends BasePage {
+    @FindBy(id = "user-name")
+    WebElement usernameInput;
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
+    @FindBy(id = "password")
+    WebElement passwordInput;
+
+    @FindBy(id = "login-button")
+    WebElement loginBtn;
+
+    @FindBy(xpath = "//h3[@data-test='error']")
+    WebElement errorMsg;
+
+
+    public void doLogin(String usernameVal, String passwordVal) {
+        usernameInput.sendKeys(usernameVal);
+        passwordInput.sendKeys(passwordVal);
+        loginBtn.click();
     }
 
-    public void doLogin() {
-        WebElement username = driver.findElement(By.id("user-name"));
-        WebElement password = driver.findElement(By.id("password"));
-        WebElement loginBtn = driver.findElement(By.id("login-button"));
-        username.sendKeys("standard_user");
-        password.sendKeys("secret_sauce");
-        loginBtn.click();
+    public void verifyLoginPage() {
+        Assert.assertTrue(usernameInput.isDisplayed());
+        Assert.assertTrue(passwordInput.isDisplayed());
+        Assert.assertTrue(loginBtn.isDisplayed());
+    }
+
+    public void verifyInvalidLoginErrorIsDisplayed() {
+        Assert.assertTrue(errorMsg.isDisplayed());
     }
 }

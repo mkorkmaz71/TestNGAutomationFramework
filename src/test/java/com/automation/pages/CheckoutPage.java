@@ -1,27 +1,29 @@
 package com.automation.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import com.automation.utils.ConfigReader;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class CheckoutPage {
-    WebDriver driver;
+public class CheckoutPage extends BasePage {
+    @FindBy(id = "first-name")
+    WebElement firstName;
 
-    public CheckoutPage(WebDriver driver) {
-        this.driver = driver;
-    }
+    @FindBy(id = "last-name")
+    WebElement lastName;
+
+    @FindBy(id = "postal-code")
+    WebElement zip;
+
+    @FindBy(id = "continue")
+    WebElement continueBtn;
 
     public void fillShippingDetails() {
-        WebElement firstName = driver.findElement(By.id("first-name"));
-        WebElement lastName = driver.findElement(By.id("last-name"));
-        WebElement zip = driver.findElement(By.id("postal-code"));
-        firstName.sendKeys("Diana");
-        lastName.sendKeys("Pelivan");
-        zip.sendKeys("33578");
+        firstName.sendKeys(ConfigReader.getProperty("checkout.firstName"));
+        lastName.sendKeys(ConfigReader.getProperty("checkout.lastName"));
+        zip.sendKeys(ConfigReader.getProperty("checkout.zip"));
     }
 
     public void clickOnContinueBtn() {
-        WebElement continueBtn = driver.findElement(By.id("continue"));
         continueBtn.click();
     }
 }
