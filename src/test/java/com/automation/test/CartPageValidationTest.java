@@ -8,7 +8,11 @@ public class CartPageValidationTest extends BaseTest {
     @Test
     public void verifyUserCanRemoveItemFromCart() {
         loginPage.doLogin(ConfigReader.getProperty("login.username"), ConfigReader.getProperty("login.password"));
+        homePage.verifyHomePage();
         homePage.clickOnAddToCartBtnOfFirstProduct();
         homePage.clickOnCartIcon();
+        cartPage.verifyPage();
+        cartPage.removeItem();
+        cartPage.verifyCartPageIsEmpty();
     }
 }

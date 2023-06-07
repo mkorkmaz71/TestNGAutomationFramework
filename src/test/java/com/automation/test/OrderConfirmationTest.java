@@ -18,3 +18,4 @@ public class OrderConfirmationTest extends BaseTest {
         orderConfirmationPage.verifyConfirmationPageDisplayed();
     }
 }
+

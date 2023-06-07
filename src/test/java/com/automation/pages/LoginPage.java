@@ -5,6 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 public class LoginPage extends BasePage {
+
     @FindBy(id = "user-name")
     WebElement usernameInput;
 
@@ -17,10 +18,9 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//h3[@data-test='error']")
     WebElement errorMsg;
 
-
-    public void doLogin(String usernameVal, String passwordVal) {
-        usernameInput.sendKeys(usernameVal);
-        passwordInput.sendKeys(passwordVal);
+    public void doLogin(String username, String password) {
+        usernameInput.sendKeys(username);
+        passwordInput.sendKeys(password);
         loginBtn.click();
     }
 

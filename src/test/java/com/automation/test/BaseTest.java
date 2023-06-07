@@ -7,6 +7,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
+
     LoginPage loginPage;
     HomePage homePage;
     CartPage cartPage;
@@ -18,7 +19,7 @@ public class BaseTest {
     public void setUp() {
         ConfigReader.initProperties();
         DriverUtils.createDriver();
-        initializePageObjects();
+        initPageObject();
     }
 
     @AfterMethod
@@ -26,7 +27,7 @@ public class BaseTest {
         DriverUtils.getDriver().quit();
     }
 
-    public void initializePageObjects(){
+    public void initPageObject() {
         loginPage = new LoginPage();
         homePage = new HomePage();
         cartPage = new CartPage();
@@ -35,5 +36,3 @@ public class BaseTest {
         orderConfirmationPage = new OrderConfirmationPage();
     }
 }
-
-
